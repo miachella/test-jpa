@@ -3,6 +3,8 @@ package biblio.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,7 +24,9 @@ public class Client {
 		super();
 	}
 	
-	
+	@OneToMany
+	@JoinColumn(name="EMP_ID")
+	private int empId;
 
 	@Override
 	public String toString() {
@@ -54,7 +58,18 @@ public class Client {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	
+
+
+
+	public int getEmpId() {
+		return empId;
+	}
+
+
+
+	public void setEmpId(int empId) {
+		this.empId = empId;
+	}
 	
 
 }

@@ -1,8 +1,11 @@
 package biblio.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -10,6 +13,7 @@ import javax.persistence.Table;
 public class Livre {
 	
 	@Id
+	@Column(name="ID")
 	private int id ;
 	
 	@Column(name="TITRE", length=255, nullable=false)
@@ -17,6 +21,9 @@ public class Livre {
 
 	@Column(name="AUTEUR", length=50, nullable=false)
 	private String auteur;
+	
+	@ManyToMany(mappedBy="livres")
+	private Set<Emprunt> emprunts;
 	
 	public Livre() {
 		super();
