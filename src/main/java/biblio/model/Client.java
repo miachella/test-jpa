@@ -1,9 +1,10 @@
 package biblio.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,21 +20,18 @@ public class Client {
 	
 	@Column(name="PRENOM", length=50, nullable=false)
 	private String prenom;
+	
+	@OneToMany(mappedBy="idClient")
+	private List<Emprunt> listEmprunt;
 
 	public Client() {
 		super();
 	}
-	
-	@OneToMany
-	@JoinColumn(name="EMP_ID")
-	private int empId;
 
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", nom=" + nom + ", prenom=" + prenom + "]";
+		return "Client " + id + "[nom=" + nom + ", prenom=" + prenom + ", emprunt=" + listEmprunt + "]";
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -58,18 +56,13 @@ public class Client {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-
-
-
-	public int getEmpId() {
-		return empId;
-	}
-
-
-
-	public void setEmpId(int empId) {
-		this.empId = empId;
-	}
 	
+	public List<Emprunt> getListEmprunt() {
+		return listEmprunt;
+	}
+
+	public void setListEmprunt(List<Emprunt> listEmprunt) {
+		this.listEmprunt = listEmprunt;
+	}
 
 }

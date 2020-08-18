@@ -35,12 +35,12 @@ public class Emprunt {
 	
 	@ManyToOne
 	@JoinColumn(name="ID_CLIENT")
-	private int idClient;
+	private Client idClient;
 	
 	@ManyToMany
 	@JoinTable(name="COMPO", 
-			joinColumns=@JoinColumn(name="ID_EMP", referencedColumnName = "ID"), 
-			inverseJoinColumns=@JoinColumn(name="ID_LIVRE", referencedColumnName = "ID"))
+			joinColumns=@JoinColumn(name="ID_EMP"), 
+			inverseJoinColumns=@JoinColumn(name="ID_LIV"))
 	private Set<Livre> livres;
 
 	public Emprunt() {
@@ -49,8 +49,8 @@ public class Emprunt {
 
 	@Override
 	public String toString() {
-		return "Emprunt [id=" + id + ", dateDebut=" + dateDebut + ", dalai=" + dalai + ", dateFin=" + dateFin
-				+ ", cliId=" + idClient + "]";
+		return "Emprunt " + id + "[dateDebut=" + dateDebut + ", dalai=" + dalai + ", dateFin=" + dateFin
+				+ ", livres associés " + livres + "]";
 	}
 
 
@@ -87,12 +87,20 @@ public class Emprunt {
 		this.dateFin = dateFin;
 	}
 
-	public int getCliId() {
+	public Client getIdClient() {
 		return idClient;
 	}
 
-	public void setCliId(int idClient) {
+	public void setIdClient(Client idClient) {
 		this.idClient = idClient;
+	}
+
+	public Set<Livre> getLivres() {
+		return livres;
+	}
+
+	public void setLivres(Set<Livre> livres) {
+		this.livres = livres;
 	}
 	
 	
